@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yoo.mapper.BoardMapper">
+
+	<select id="getList" resultType="com.yoo.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno > 0
+		]]>
+	</select>
+	
+	
+	<select id="getMailLst" resultType="com.yoo.domain.BoardVO">
+		select * from tbl_board order by bno desc limit 0,8
+	</select>
+	
+	<!-- 댓글수  -->
+	<update id="addUpdateRepyCnt">
+		update tbl_board set replyCnt = replyCnt +1 where bno = #{bno}
+	</update>
+	
+	<!-- 댓글수  -->
+	<update id="removeUpdateRepyCnt">
+		update tbl_board set replyCnt = replyCnt -1 where bno = #{bno}
+	</update>
+	
+	<!-- 10개씩 끊어서  -->
+	<select id="getListWithPaging" resultType="com.yoo.domain.BoardVO">
+		<![CDATA[		
+			select bno , title,content,writer,regdate,updatedate,replyCnt from tbl_board
+		]]>
+			
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+					<when test="type == 'T'.toString()">
+						title like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'C'.toString()">
+						content like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'W'.toString()">
+						writer like CONCAT('%', #{keyword}, '%')
+					</when>
+    		</choose>
+		</trim>
+			
+		<![CDATA[
+			order by bno DESC limit #{startList},#{listSize}			
+		]]>	
+	</select>
+	
+	<!-- user -->
+	<select id="getBoardListCnt" resultType="int">
+		select count(*) as listCnt from tbl_board
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+					<when test="type == 'T'.toString()">
+						title like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'C'.toString()">
+						content like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'W'.toString()">
+						writer like CONCAT('%', #{keyword}, '%')
+					</when>
+    		</choose>
+		</trim>
+	</select>
+		
+	<insert id="insert">
+		insert into tbl_board (title,content,writer) values (#{title},#{content},#{writer}) 
+	</insert>
+	
+	<insert id="insertSelectKey">
+		
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			select ifnull(max(bno),0)+1 from tbl_board
+		</selectKey>
+	
+		insert into tbl_board (bno,title,content,writer) values (#{bno},#{title},#{content},#{writer})
+	
+	</insert>
+	
+	
+	<select id="read" resultType="com.yoo.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno = #{bno}
+		]]>		
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+	
+	<update id="update">
+		update tbl_board set title = #{title}, content = #{content},writer= #{writer},
+		updateDate = now() where bno = #{bno}
+	</update>
+	
+	
+	
+	
+	<!-- ******Manager***** -->
+	
+	<!-- Mlist cnt -->
+	<select id="getMBoardListCnt" resultType="int">
+		select count(*) as listCnt from tbl_m_board
+		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+					<when test="type == 'T'.toString()">
+						title like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'C'.toString()">
+						content like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'W'.toString()">
+						writer like CONCAT('%', #{keyword}, '%')
+					</when>
+    		</choose>
+		</trim>
+	</select>
+		
+	<!-- 10개씩 끊어서  -->
+	<select id="getMListWithPaging" resultType="com.yoo.domain.BoardVO">
+		<![CDATA[		
+			select bno , title,content,writer,regdate,updatedate,replyCnt from tbl_m_board
+		]]>		
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+					<when test="type == 'T'.toString()">
+						title like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'C'.toString()">
+						content like CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test="type == 'W'.toString()">
+						writer like CONCAT('%', #{keyword}, '%')
+					</when>
+    		</choose>
+		</trim>			
+		<![CDATA[
+			order by bno DESC limit #{startList},#{listSize}			
+		]]>	
+	</select>
+	
+	<!-- 선택 조회 -->
+	<select id="Mread" resultType="com.yoo.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_m_board where bno = #{bno}
+		]]>		
+	</select>
+	
+	<!-- 댓글수  -->
+	<update id="MaddUpdateRepyCnt">
+		update tbl_m_board set replyCnt = replyCnt +1 where bno = #{bno}
+	</update>
+	
+	<!-- 댓글수  -->
+	<update id="MremoveUpdateRepyCnt">
+		update tbl_m_board set replyCnt = replyCnt -1 where bno = #{bno}
+	</update>
+	
+	<!-- 메인 리스트 -->
+	<select id="getMainMList" resultType="com.yoo.domain.BoardVO">
+		select * from tbl_m_board order by bno desc limit 0,8
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="Minsert">
+		insert into tbl_m_board (title,content,writer) values (#{title},#{content},#{writer}) 
+	</insert>
+	
+	<!--  삭제 -->
+	<delete id="Mdelete">
+		delete from tbl_m_board where bno = #{bno}
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="Mupdate">
+		update tbl_m_board set title = #{title}, content = #{content},writer= #{writer},
+		updateDate = now() where bno = #{bno}
+	</update>
+</mapper>

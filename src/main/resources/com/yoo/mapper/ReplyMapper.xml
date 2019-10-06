@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yoo.mapper.ReplyMapper">
+
+	<insert id="insert">
+		insert into tbl_reply (bno,reply,replyer) values(#{bno},#{reply},#{replyer})
+	</insert>
+	
+	<select id="read" resultType="com.yoo.domain.ReplyVO">
+		select * from tbl_reply where rno = #{rno}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_reply where rno = #{rno}
+	</delete>
+	<delete id="deleteBno">
+		delete from tbl_reply where bno = #{bno}
+	</delete>
+	
+	
+	<update id="update">
+		update tbl_reply set reply = #{reply}, updatedate= now() where rno = #{rno}
+	</update>
+	
+	<select id="getListWithPaging" resultType="com.yoo.domain.ReplyVO">
+		SELECT rno,bno,reply,replyer,replydate,updatedate FROM tbl_reply WHERE bno = #{bno} order by rno ASC
+	</select>
+	
+
+	
+	
+	<!-- Manager -->
+	<insert id="Minsert">
+		insert into tbl_m_reply (bno,reply,replyer) values(#{bno},#{reply},#{replyer})
+	</insert>
+	
+	<select id="getMListWithPaging" resultType="com.yoo.domain.ReplyVO">
+		SELECT rno,bno,reply,replyer,replydate,updatedate FROM tbl_m_reply WHERE bno = #{bno} order by rno ASC
+	</select>
+	
+	<delete id="Mdelete">
+		delete from tbl_m_reply where rno = #{rno}
+	</delete>
+	<delete id="MdeleteBno">
+		delete from tbl_m_reply where bno = #{bno}
+	</delete>
+		
+	<update id="Mupdate">
+		update tbl_m_reply set reply = #{reply}, updatedate= now() where rno = #{rno}
+	</update>
+	
+	<select id="Mread" resultType="com.yoo.domain.ReplyVO">
+		select * from tbl_m_reply where rno = #{rno}
+	</select>
+	
+</mapper>

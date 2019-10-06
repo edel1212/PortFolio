@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yoo.mapper.MemberMapper">
+
+	 <resultMap type="com.yoo.domain.MemberVO" id="memberMap">
+	   <id property="userid" column="userid"/>
+	   <result property="userid" column="userid"/>
+	   <result property="userpw" column="userpw"/>
+	   <result property="name" column="username"/>
+	   <result property="useremail" column="useremail"/>
+	   <result property="usergender" column="usergender"/>
+	   <result property="regDate" column="regdate"/>
+	   <result property="updateDate" column="updatedate"/>
+	   <collection property="authList" resultMap="authMap">
+	   </collection> 
+	 </resultMap>
+	 
+	 <resultMap type="com.yoo.domain.AuthVO" id="authMap">
+	   <result property="userid" column="userid"/>
+	   <result property="auth" column="auth"/>
+	 </resultMap>
+	 
+	 <!-- 가입자 전체 정보 확인 -->
+	 <select id="read" resultMap="memberMap">
+	SELECT 
+	  mem.userid,  userpw, username,useremail,usergender, enabled, regdate, updatedate, auth,authKey
+	FROM 
+	  tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid 
+	WHERE mem.userid = #{userid} 
+	 </select>
+	
+	<!-- 회원가입 -->
+	<insert id="MemberJoin" parameterType="com.yoo.domain.MemberVO">
+		INSERT INTO tbl_member (userid,userpw,username,usergender,useremail,Authkey) VALUES(#{userid},#{userpw},#{name},#{usergender},#{useremail},#{Authkey})
+	</insert>
+	
+	<!-- 회원가입시 권한 부여 -->
+	<insert id="AddAuth" parameterType="com.yoo.domain.MemberVO">
+		insert into tbl_member_auth (userid,auth) values (#{userid},'ROLE_MEMBER')
+	</insert>
+	
+	<!-- 아이디 중복 확인 -->
+	<select id="checkOverId" parameterType="string" resultType="int">
+		SELECT count(*) from tbl_member where userid = #{userid}
+	</select>
+	
+	<!-- 이메일 중복 확인 -->
+	<select id="cheakOverEmail" parameterType="string" resultType="int">
+		SELECT count(*) from tbl_member where useremail = #{useremail}
+	</select>
+	
+	<!-- 유저 정보 -->
+	<select id="Memberinfo" parameterType="string" resultType="com.yoo.domain.MemberVO" resultMap="memberMap">
+		select * from tbl_member where userid = #{userid}
+	</select>
+	
+	<!-- 작성 게시물 확인 -->
+	<select id="MemberCheackBoard" resultType="int" parameterType="string">
+		select count(*) from tbl_board where writer = #{userid}
+	</select>
+	
+	<!-- 개인정보 수정 -->
+	<update id="MemberUpdate">
+		UPDATE tbl_member SET userpw = #{userpw},updateDate = now() WHERE userid = #{userid}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="MemberDelte" parameterType="string">
+		delete from tbl_member where userid = #{userid}
+	</delete>
+	
+	<!-- 권한 삭제 -->
+	<delete id="AuthDelete" parameterType="string">
+		delete from tbl_member_auth where userid = #{userid}
+	</delete>
+	
+	<!-- 인증 이메일 확인시 비밀번호 변경 -->
+	<update id="EmailAuthkey" parameterType="string">
+		update tbl_member set authKey = '1' where authKey = #{authKey}
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select id="Findid" resultType="string">
+		select ifnull(userid,0) from tbl_member where username = #{username} and useremail = #{useremail}
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+	<update id="SearchPw">
+		UPDATE tbl_member set userpw = #{userpw} where userid = #{userid} and useremail = #{useremail}
+	</update>
+	
+	<!-- 이메일 인증 체크 -->
+	<select id="EmailAuthCheck" resultType="string" parameterType="string">
+		select Authkey from tbl_member where userid = #{userid}
+	</select>
+	
+</mapper>

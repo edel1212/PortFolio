@@ -1,0 +1,414 @@
+@media(max-width:1530px){
+	
+	.main-nav-contents{
+		width:1220px;
+	}
+	
+	.m1{
+	 background-image:url(../img/m1-1520.jpg) !important;
+	}
+
+	.m2{
+		 background-image:url(../img/m2-1520.jpg) !important;
+	}
+	
+	.m3{
+		 background-image:url(../img/m3-1520.jpg) !important;
+	}
+	
+	.swiper-slide > .main-text{
+		font-size: 60px !important;
+	}
+	
+}
+
+@media(max-width:1058px){	
+	.main-nav-contents{
+		width:950px;
+	}
+	
+	.wrap{
+		width:980px !important;
+	}
+	
+	.m1{
+	 background-image:url(../img/m1-1048.jpg) !important;
+	}
+
+	.m2{
+		 background-image:url(../img/m2-1048.jpg) !important;
+	}
+	
+	.m3{
+		 background-image:url(../img/m3-1048.jpg) !important;
+	}
+	
+	.list-title{
+		width:245px;
+	}
+	.footer-contents{
+		width:980px;
+	}
+	
+}
+
+@media(max-width:650px){
+	
+	.main-nav-contents{
+		width:330px;
+	}
+	
+	
+	.mobile-left{
+		display: none;
+	}
+	
+	.swiper-slide > .main-button{
+		width: 175px !important;
+		left:15% !important;
+	}
+	
+	.swiper-slide > .main-text{
+		left:14% !important;
+		top:62% !important;
+		line-height: 1 !important;
+		font-size: 40px !important;
+	}
+	
+	.main-banner-icon{
+		width:375px !important;
+		left:0% !important;
+		top:20% !important;
+	}
+	
+	.wrap{
+		width:335px !important;
+	}
+	
+	
+	.isotope-item{
+		width:155px !important;
+		height:200px !important;
+		margin: 10px 5px !important;
+		text-align: center;
+	}
+	
+	.game-image{
+		height: auto !important;
+	}
+	
+	.game-intro>p,.game-intro>.bar,.game-intro>span{
+		display: none !important;
+	}
+	
+	.board{
+		width:100% !important;
+	}
+	
+	.board> ul {
+		height: 610px !important;
+	}
+	
+	.filter{
+		height:125px !important;
+	}
+	
+	.footer{
+		display: none;
+	}
+	iframe{
+		height:300px;
+	}
+}
+
+
+body{
+	background-color: #f9f9f9;
+}
+
+
+/* main-banner */
+.main-banner{
+	width:100%;
+	height:700px;
+	border-bottom: 1px solid #ff273b
+}
+
+.main-banner > li{
+	width:100%;
+	height:100%;
+	background-color: yellow;
+}
+
+/***** swiper css *****/
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	background-repeat:no-repeat;
+}
+
+.swiper-button-white{
+	opacity:0;
+	transition: 0.8s;	
+}
+.main-banner:hover .swiper-button-white{
+	opacity:1;
+	
+}
+
+.main-banner:hove .swiper-slide{
+	background-position: 0px 10px;
+	
+}
+
+.m1{
+	 background-image:url(../img/m1.jpg);
+}
+
+.m2{
+	 background-image:url(../img/m2.jpg);
+}
+
+.m3{
+	 background-image:url(../img/m3.jpg);
+}
+
+
+.swiper-slide > .main-banner-icon{
+	position: absolute;
+	width:400px;
+}
+
+
+.swiper-slide > .main-text{
+	position: absolute;
+	color:white;
+	text-shadow:0px 0px 6px rgba(0,0,0,0.2);
+	font-size:70px;
+	font-weight: bold;
+	line-height: 77px;
+}
+
+.swiper-slide > .main-button{
+	position: absolute;
+	color:white;
+	text-align:center;
+	width:95px;
+	height:25px;
+	background-color:#ff273b;
+	padding:10px 50px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.main-button>a{
+	color:white;
+}
+
+/***** /swiper css *****/
+
+
+/* contents */
+.wrap{
+	width:1280px;
+	box-sizing:border-box;
+	margin: 0 auto;
+	margin-top:75px;
+	margin-bottom: 30px;
+	
+}
+
+.wrap::after{
+	content: "";
+	clear: both;
+}
+
+.contents-haed{
+	overflow: hidden;
+}
+
+.contents-haed > h2{
+	display: inline;
+	border-bottom: 2px solid #ff273b;
+}
+
+.filter{
+	width:100%;
+	height:60px;
+	background: white;
+	box-sizing: border-box;
+	padding-left:30px;
+	line-height: 58px;
+	margin-top:15px;
+	margin-rihgt:24px;
+}
+
+
+.filter > a{
+	color:black;
+	margin:0 10px;
+	padding: 2px 12px;
+}
+
+.current{
+	border-radius: 12px;
+	background-color: red;
+	color:white !important;
+}
+
+.game-List{
+	margin-bottom: 50px;
+}
+
+.game-List li{
+	width:300px;
+	height:335px;
+	background-color: white;
+	margin: 30px 10px 10px 10px;
+}
+
+.iconDesktop{
+	display: inline-block;
+	width:18px;
+	height:17px;
+	margin-right:3px;
+	background:url("../img/set_device.png") no-repeat 0 0;
+}
+
+.list-effect{
+	box-shadow:7px 7px 11px 0px #00000075;
+
+}
+
+.game-image{
+	width:100%;
+	height:200px;
+	overflow: hidden;
+}
+
+
+.game-image img{
+	-webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+}
+
+.game-List li:hover img{
+	-webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+}
+
+
+.game-intro{
+	box-sizing: border-box;
+	padding:10px 20px;
+	width:100%;
+	height:120px;
+}
+
+.game-intro>h3{
+	margin-bottom: 5px;
+}
+
+.bar{
+	width:100%;
+	margin:auto;
+	height:1px;
+	background-color: #ff273b;
+	margin: 10px 0;
+}
+
+/**** isotope ****/
+
+
+.isotope-item {
+    z-index: 2;
+}
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+ 
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    transition-property: height, width;
+}
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    transition-property: transform, opacity;
+}
+
+
+/**** /isotope ****/
+
+.board{
+	width:48%;
+	margin-bottom: 60px;
+	border-radius: 50px 50px 50px 50px;
+}
+
+.more{
+	font-size: 20px;
+	padding-bottom: 2px;
+	border-bottom: 1px dotted #999999;
+}
+
+.board>ul{
+	margin-top:15px;
+	height:400px;
+	background-color: white;
+	padding: 10px 50px;
+	border-radius:1%; 
+}
+
+
+.board>ul>li{
+	margin:10px 0;
+	padding-bottom: 12px;
+	border-bottom: 1px dotted #999999;	
+	overflow: hidden;
+	
+}
+
+.board>ul>li::after{
+	content: "";
+	clear: both;
+}
+
+.list-title{
+	max-width:380px;
+	float:left;
+	white-space: nowrap;	
+	text-overflow: ellipsis;	
+	overflow: hidden;
+}
+
+.list-cnt{
+	color:#ff273b;
+}
+
+.list-date{
+	float: right;
+}

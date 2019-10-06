@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.join-wrap{
+	width:50%;
+	margin: auto;
+}
+
+/* Full-width input fields */
+.join-container>input[type=text],
+.join-container>input[type=password],
+.join-container>input[type=email]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+.join-container>select{
+  width: 100%;
+  padding: 0px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 300px) {
+  
+  .join-wrap{
+	width:80%;
+	}
+  
+}

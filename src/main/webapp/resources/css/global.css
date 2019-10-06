@@ -1,0 +1,52 @@
+html,body{
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+li{
+	list-style: none;
+}
+
+h1,h2,h3,p,a{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+a,h1,h2,h3,h4,ul,p,b,iframe{
+	margin:0;
+	padding:0;
+}
+
+a{
+	text-decoration: none;
+}
+
+ a{
+ 	text-decoration: none;
+ 	color:black;
+ 	transition: all 0.5s ease-in;
+
+ }
+ 
+ a:hover h3{
+ 	color:red;
+ }
+ 
+ a:visited { color: black; text-decoration: none;}
+
+
+.left{
+	float:left;
+}
+
+.right{
+	float:right;
+}
+
+.row-align{
+	display: flex;
+}
+
+img{
+	width:100%;
+}

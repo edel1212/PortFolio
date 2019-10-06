@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.panel-heading::after{
+	content: "";
+	clear: both;
+}
+
+.wrap{
+	width:1200px;
+	margin:auto;
+	border: 1px solid black;
+}
+
+.youtube{
+	
+	width:100%;
+	
+}
+
+.wrapper{
+	width:1280px;
+	margin: auto;
+	padding:5px 30px;
+	border: 1px solid #e7e7e7;
+	height:100%;
+}
+
+.download{
+	color:red !important;
+	font-weight: bold;
+	font-size: 15px;
+}

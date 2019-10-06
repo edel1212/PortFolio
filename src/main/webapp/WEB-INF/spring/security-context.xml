@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean 등록 -->
+	<bean id="customAccessDenied" class="com.yoo.security.CustomAccessDeniedHandler"></bean>
+
+	<!-- bean login 등록 -->
+	<bean id="customLoginSuccess" class="com.yoo.security.CustomLoginSuccessHandler"></bean>
+	
+	
+	<!-- bean 등록 -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<!-- bean 등록 -->
+	<bean id="customUserDetailService" class="com.yoo.security.CustomUserDetailsService"></bean>	
+	
+	<!-- bean등록 -->
+	<bean id="logoutSuccessHandler" class="com.yoo.security.CustomLogoutSuccessHandler"></bean>
+	
+		
+	<security:http>
+		<!-- 로그인 -->	
+		<security:form-login username-parameter="username" login-page="/member/customLogin" authentication-success-handler-ref="customLoginSuccess" />
+		
+		<security:access-denied-handler ref="customAccessDenied"/>
+		
+		<security:logout logout-url="/customLogout" invalidate-session="true" success-handler-ref="logoutSuccessHandler" delete-cookies="JSESSIONID"/>
+		
+	
+
+	</security:http>
+
+	<security:authentication-manager>
+	
+	
+		<security:authentication-provider user-service-ref="customUserDetailService">
+		
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		
+		</security:authentication-provider>
+	
+	</security:authentication-manager>
+
+</beans>
