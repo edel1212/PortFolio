@@ -1,5 +1,4 @@
 # CRUD 프로젝트
-- ㅁ
 1. Spring version:5.0.7
 1. MariaDB
 1. Lombok
